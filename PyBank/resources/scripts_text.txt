@@ -1,0 +1,98 @@
+# heading
+with open('my_homework.txt', 'a') as file:
+    file.write(f"\nFinancial Analysis\n\n—--------------------------------\n")
+
+# total number of months
+import pandas as pd
+
+def count_uniques(file_path, column_name):
+    df = pd.read_csv(file_path)
+    unique_values = df[column_name].nunique()
+    return unique_values
+
+file_path = 'budget_data.csv'
+column_name = 'Date'
+result = count_uniques(file_path, column_name)
+
+with open('my_homework.txt', 'a') as file:
+    file.write(f"\n")
+    file.write(f"Total Months: {result}")
+
+# net profit/loss
+import csv
+
+file_path = 'budget_data.csv' 
+column_index = 1  # Column B 
+
+sum = 0
+with open(file_path, newline='') as csvfile:
+    reader = csv.reader(csvfile)
+    next(reader)  # read next row 
+    for row in reader:
+        sum += float(row[column_index])
+
+with open('my_homework.txt', 'a') as file: 
+    file.write(f"\n")
+    file.write(f"\nTotal: {sum:.0f}")
+
+# Average Change
+B2 = 1088983
+B87 = 382539
+
+result = (B87-B2)/(86-1)
+
+with open('my_homework.txt', 'a') as file:  
+    file.write(f"\n")
+    file.write(f"\nAverage Change: ${result:.2f}")
+
+# Greatest Profit
+import csv
+
+file_path = 'budget_data.csv'
+column_index_a = 0  
+column_index_b = 1  
+
+# Initialize variables to store max value and its corresponding column A content
+max_value = float('-inf')  
+corresponding_value = None
+
+# Read the CSV file and find the maximum value in column B along with its corresponding value from column A
+with open(file_path, newline='') as csvfile:
+    csvreader = csv.reader(csvfile)
+    next(csvreader)  # Skip header row
+    
+    for row in csvreader:
+        value_b = float(row[column_index_b])
+        if value_b > max_value:
+            max_value = value_b
+            corresponding_value = row[column_index_a]
+
+with open('my_homework.txt', 'a') as file:
+    file.write(f"\n")
+    file.write(f"\nGreatest Increase in Profits: {corresponding_value} ({max_value:.0f})")
+
+# Greatest Loss
+import csv
+
+file_path = 'budget_data.csv'
+column_index_a = 0  
+column_index_b = 1  
+
+# Initialize variables to store max value and its corresponding column A content
+min_value = float('+inf')  
+corresponding_value = None
+
+# Read the CSV file and find the maximum value in column B along with its corresponding value from column A
+with open(file_path, newline='') as csvfile:
+    csvreader = csv.reader(csvfile)
+    next(csvreader)  # Skip header row
+    
+    for row in csvreader:
+        value_b = float(row[column_index_b])
+        if value_b < min_value:
+            min_value = value_b
+            corresponding_value = row[column_index_a]
+
+with open('my_homework.txt', 'a') as file:
+    file.write(f"\n")
+    file.write(f"\nGreatest Decrease in Profits: {corresponding_value} ({min_value:.0f})")
