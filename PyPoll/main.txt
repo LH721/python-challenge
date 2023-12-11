@@ -1,0 +1,65 @@
+#Charles
+import pandas as pd
+
+def count_rows_with_string(file_path, column_name, target_string):
+    df = pd.read_csv(file_path)
+    count = df[df[column_name].str.contains(target_string, case=False, na=False)].shape[0]
+    return count
+
+file_path = 'election_data.csv'
+column_name = 'Candidate'
+target_string = 'Charles Casper Stockham'
+
+result = count_rows_with_string(file_path, column_name, target_string)
+total_votes = pd.read_csv(file_path)[column_name].count()
+charles_votes = count_rows_with_string(file_path, column_name, target_string)
+charles_percentage = (charles_votes / total_votes) * 100
+
+with open('election_results.txt', 'a') as file:
+    file.write(f"Election Results\n\n—--------------------------------\n")
+    file.write(f"\nTotal Votes: {total_votes}\n\n------------------------------\n")
+    file.write(f"\nCharles Casper Stockham: {charles_percentage:.3f}% ({charles_votes})\n\n")
+
+#Diana
+import pandas as pd
+
+def count_rows_with_string(file_path, column_name, target_string):
+    df = pd.read_csv(file_path)
+    count = df[df[column_name].str.contains(target_string, case=False, na=False)].shape[0]
+    return count
+
+file_path = 'election_data.csv'
+column_name = 'Candidate'
+target_string = 'Diana Degette'
+
+result = count_rows_with_string(file_path, column_name, target_string)
+diana_votes = count_rows_with_string(file_path, column_name, target_string)
+diana_percentage = (diana_votes / total_votes) * 100
+
+with open('election_results.txt', 'a') as file:
+    file.write(f"Diana DeGette: {diana_percentage:.3f}% ({diana_votes})\n\n")
+
+#Raymon
+import pandas as pd
+
+def count_rows_with_string(file_path, column_name, target_string):
+    df = pd.read_csv(file_path)
+    count = df[df[column_name].str.contains(target_string, case=False, na=False)].shape[0]
+    return count
+
+file_path = 'election_data.csv'
+column_name = 'Candidate'
+target_string = 'Raymon Anthony Doane'
+
+result = count_rows_with_string(file_path, column_name, target_string)
+raymon_votes = count_rows_with_string(file_path, column_name, target_string)
+raymon_percentage = (raymon_votes / total_votes) * 100
+
+with open('election_results.txt', 'a') as file:
+    file.write(f"Raymon Anthony Doane: {raymon_percentage:.3f}% ({raymon_votes})\n\n--------------------------------\n")
+
+#print winner
+with open('election_results.txt', 'a') as file:
+    file.write(f"\nwinner: Diana DeGette\n\n--------------------------------")
+
+
